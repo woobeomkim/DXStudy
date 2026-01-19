@@ -18,6 +18,9 @@
     <Filter Include="소스 파일\Headers\Default">
       <UniqueIdentifier>{4a23f493-1421-4602-9bc5-46b92a42a44f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Shaers">
+      <UniqueIdentifier>{657e66e9-1a51-4fff-b815-0f6d9a527a6c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DXStudy.h">
@@ -71,5 +74,10 @@
     <ClCompile Include="Game.cpp">
       <Filter>소스 파일\Main</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="Default.hlsl">
+      <Filter>소스 파일\Shaers</Filter>
+    </FxCompile>
   </ItemGroup>
 </Project>
