@@ -34,8 +34,16 @@ void Game::Init(HWND hwnd)
 
 void Game::Update()
 {
-	//_transformData.offset.x += 0.00003f;
-	//_transformData.offset.y += 0.00003f;
+
+	Matrix matScale = Matrix::CreateScale(_localScale / 3);
+	Matrix matRotation = Matrix::CreateRotationX(_localRotation.x);
+	matRotation *= Matrix::CreateRotationY(_localRotation.y);
+	matRotation *= Matrix::CreateRotationZ(_localRotation.z);
+	Matrix matTranslation = Matrix::CreateTranslation(_localPosition);
+
+	Matrix matWorld = matScale * matRotation * matTranslation;
+	_transformData.matWorld = matWorld;
+
 	D3D11_MAPPED_SUBRESOURCE subResource;
 	ZeroMemory(&subResource, sizeof(subResource));
 
@@ -161,7 +169,7 @@ void Game::CreateGeometry()
 		// 13
 		// 02
 		_vertices[0].position = Vec3(-0.5f, -0.5f, 0);
-		_vertices[0].uv = Vec2(0.f, 5.f);
+		_vertices[0].uv = Vec2(0.f, 1.f);
 		//_vertices[0].color = Color(1.f, 0.f, 0.f, 1.f);
 
 		_vertices[1].position = Vec3(-0.5f, 0.5f, 0);
@@ -169,11 +177,11 @@ void Game::CreateGeometry()
 		//_vertices[1].color = Color(0.f, 1.f, 0.f, 1.f);
 
 		_vertices[2].position = Vec3(0.5f, -0.5f, 0);
-		_vertices[2].uv = Vec2(5.f, 5.f);
+		_vertices[2].uv = Vec2(1.f, 1.f);
 		//_vertices[2].color = Color(0.f, 0.f, 1.f, 1.f);
 
 		_vertices[3].position = Vec3(0.5f, 0.5f, 0);
-		_vertices[3].uv = Vec2(5.f, 0.f);
+		_vertices[3].uv = Vec2(1.f, 0.f);
 		//_vertices[3].color = Color(0.f, 0.f, 1.f, 1.f);
 
 	}

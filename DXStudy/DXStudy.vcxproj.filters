@@ -21,6 +21,9 @@
     <Filter Include="소스 파일\Shaers">
       <UniqueIdentifier>{657e66e9-1a51-4fff-b815-0f6d9a527a6c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Utils">
+      <UniqueIdentifier>{6775bce2-9f23-4baf-b049-c1acbafea326}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DXStudy.h">
@@ -50,6 +53,9 @@
     <ClInclude Include="Game.h">
       <Filter>소스 파일\Main</Filter>
     </ClInclude>
+    <ClInclude Include="SimpleMath.h">
+      <Filter>소스 파일\Utils</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="DXStudy.rc">
@@ -74,10 +80,18 @@
     <ClCompile Include="Game.cpp">
       <Filter>소스 파일\Main</Filter>
     </ClCompile>
+    <ClCompile Include="SimpleMath.cpp">
+      <Filter>소스 파일\Utils</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Default.hlsl">
       <Filter>소스 파일\Shaers</Filter>
     </FxCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="SimpleMath.inl">
+      <Filter>소스 파일\Utils</Filter>
+    </None>
   </ItemGroup>
 </Project>
