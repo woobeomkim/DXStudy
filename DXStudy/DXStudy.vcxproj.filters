@@ -9,52 +9,88 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="소스 파일\Headers">
-      <UniqueIdentifier>{82d8bd98-5866-4bf9-8e5a-6592963e0298}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\Main">
-      <UniqueIdentifier>{837dd32f-9ff6-4fa5-b749-fb8df5ee97ee}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\Headers\Default">
-      <UniqueIdentifier>{4a23f493-1421-4602-9bc5-46b92a42a44f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\Shaers">
-      <UniqueIdentifier>{657e66e9-1a51-4fff-b815-0f6d9a527a6c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="소스 파일\Utils">
       <UniqueIdentifier>{6775bce2-9f23-4baf-b049-c1acbafea326}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\99. Headers">
+      <UniqueIdentifier>{82d8bd98-5866-4bf9-8e5a-6592963e0298}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\99. Headers\Default">
+      <UniqueIdentifier>{4a23f493-1421-4602-9bc5-46b92a42a44f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\00. Engine">
+      <UniqueIdentifier>{f59e5da3-0d77-431d-8f84-9d32cbce55a0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\00. Engine\Pipeline">
+      <UniqueIdentifier>{6a84bb77-652a-44f4-a42b-ef5d6bbdc6bb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\00. Engine\Pipeline\00. Geometry">
+      <UniqueIdentifier>{727956b3-474e-4ee9-9925-74233111c6b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\00. Engine\Pipeline\01. InputAssembler">
+      <UniqueIdentifier>{52589702-9f27-42eb-b276-f0be5f6c690d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\00. Engine\Pipeline\02. VertexShader">
+      <UniqueIdentifier>{20d43f2f-471b-4a3d-a27d-54450f1da2a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\01. Main">
+      <UniqueIdentifier>{837dd32f-9ff6-4fa5-b749-fb8df5ee97ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\98. Shaders">
+      <UniqueIdentifier>{657e66e9-1a51-4fff-b815-0f6d9a527a6c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\00. Engine\Pipeline\03. Raterizer">
+      <UniqueIdentifier>{6fb7640d-2225-4f53-8dd0-61c32b0339e9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\00. Engine\Pipeline\04. PixelShader">
+      <UniqueIdentifier>{e5d957c4-0b0c-403f-aa06-b44bde1083f7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\00. Engine\Pipeline\05. OutputMerger">
+      <UniqueIdentifier>{59ffc66d-69fd-4013-9b0d-8b602017fa56}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DXStudy.h">
-      <Filter>소스 파일\Main</Filter>
+      <Filter>소스 파일\01. Main</Filter>
     </ClInclude>
     <ClInclude Include="framework.h">
-      <Filter>소스 파일\Headers\Default</Filter>
+      <Filter>소스 파일\99. Headers\Default</Filter>
     </ClInclude>
     <ClInclude Include="Resource.h">
-      <Filter>소스 파일\Headers\Default</Filter>
+      <Filter>소스 파일\99. Headers\Default</Filter>
     </ClInclude>
     <ClInclude Include="targetver.h">
-      <Filter>소스 파일\Headers\Default</Filter>
+      <Filter>소스 파일\99. Headers\Default</Filter>
     </ClInclude>
     <ClInclude Include="pch.h">
-      <Filter>소스 파일\Headers</Filter>
+      <Filter>소스 파일\99. Headers</Filter>
     </ClInclude>
     <ClInclude Include="Values.h">
-      <Filter>소스 파일\Headers</Filter>
+      <Filter>소스 파일\99. Headers</Filter>
     </ClInclude>
     <ClInclude Include="Struct.h">
-      <Filter>소스 파일\Headers</Filter>
+      <Filter>소스 파일\99. Headers</Filter>
     </ClInclude>
     <ClInclude Include="Types.h">
-      <Filter>소스 파일\Headers</Filter>
+      <Filter>소스 파일\99. Headers</Filter>
     </ClInclude>
     <ClInclude Include="Game.h">
-      <Filter>소스 파일\Main</Filter>
+      <Filter>소스 파일\01. Main</Filter>
     </ClInclude>
     <ClInclude Include="SimpleMath.h">
       <Filter>소스 파일\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics.h">
+      <Filter>소스 파일\00. Engine\Pipeline</Filter>
+    </ClInclude>
+    <ClInclude Include="VertextBuffer.h">
+      <Filter>소스 파일\00. Engine\Pipeline\01. InputAssembler</Filter>
+    </ClInclude>
+    <ClInclude Include="InputLayout.h">
+      <Filter>소스 파일\00. Engine\Pipeline\01. InputAssembler</Filter>
+    </ClInclude>
+    <ClInclude Include="IndexBuffer.h">
+      <Filter>소스 파일\00. Engine\Pipeline\01. InputAssembler</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -72,21 +108,33 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DXStudy.cpp">
-      <Filter>소스 파일\Main</Filter>
+      <Filter>소스 파일\01. Main</Filter>
     </ClCompile>
     <ClCompile Include="pch.cpp">
-      <Filter>소스 파일\Headers</Filter>
+      <Filter>소스 파일\99. Headers</Filter>
     </ClCompile>
     <ClCompile Include="Game.cpp">
-      <Filter>소스 파일\Main</Filter>
+      <Filter>소스 파일\01. Main</Filter>
     </ClCompile>
     <ClCompile Include="SimpleMath.cpp">
       <Filter>소스 파일\Utils</Filter>
     </ClCompile>
+    <ClCompile Include="Graphics.cpp">
+      <Filter>소스 파일\00. Engine\Pipeline</Filter>
+    </ClCompile>
+    <ClCompile Include="VertextBuffer.cpp">
+      <Filter>소스 파일\00. Engine\Pipeline\01. InputAssembler</Filter>
+    </ClCompile>
+    <ClCompile Include="InputLayout.cpp">
+      <Filter>소스 파일\00. Engine\Pipeline\01. InputAssembler</Filter>
+    </ClCompile>
+    <ClCompile Include="IndexBuffer.cpp">
+      <Filter>소스 파일\00. Engine\Pipeline\01. InputAssembler</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Default.hlsl">
-      <Filter>소스 파일\Shaers</Filter>
+      <Filter>소스 파일\98. Shaders</Filter>
     </FxCompile>
   </ItemGroup>
   <ItemGroup>

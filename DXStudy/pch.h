@@ -4,6 +4,8 @@
 #include "Values.h"
 #include "Struct.h"
 
+#include <memory>
+
 //STL
 #include <string>
 #include <vector>
@@ -36,3 +38,9 @@ using namespace Microsoft::WRL;
 #endif
 
 #define CHECK(p) assert(SUCCEEDED(p))
+
+// Engine
+#include "Graphics.h"
+#include "VertextBuffer.h"
+#include "IndexBuffer.h"
+#include "InputLayout.h"
