@@ -1,10 +1,10 @@
 #include "IndexBuffer.h"
 #pragma once
-class VertextBuffer
+class VertexBuffer
 {
 public:
-	VertextBuffer(ComPtr<ID3D11Device> device);
-	~VertextBuffer();
+	VertexBuffer(ComPtr<ID3D11Device> device);
+	~VertexBuffer();
 
 	ComPtr<ID3D11Buffer> GetComPtr() { return _vertexBuffer; }
 	uint32 GetStride() { return _stride; }

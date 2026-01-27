@@ -13,16 +13,11 @@ public:
 private:
 	void CreateGeometry();
 
-	void CreateRasterizerState();
-	void CreateSamplerState();
-	void CreateBlendState();
-
 private:
 	HWND _hwnd = nullptr;
-	//uint32 _width = 0;
-	//uint32 _height = 0;
 
 	shared_ptr<Graphics> _graphics;
+	shared_ptr<Pipeline> _pipeline;
 private:
 	
 	// Misc
@@ -33,23 +28,22 @@ private:
 	// Geometry
 
 	shared_ptr<Geometry<VertexTextureData>> _geometry;
-	shared_ptr<VertextBuffer> _vertexBuffer;
+	shared_ptr<VertexBuffer> _vertexBuffer;
 	shared_ptr<IndexBuffer> _indexBuffer;
 	shared_ptr<InputLayout> _inputLayout;
 
 	// VS
 	shared_ptr<VertexShader> _vertexShader = nullptr;
 	//RAS
-	ComPtr<ID3D11RasterizerState> _rasterizerState = nullptr;
-	
+	shared_ptr<RasterizerState> _rasterizerState;
 	// PS
 	shared_ptr<PixelShader> _pixelShader = nullptr;
 
 	// SharderResourceView
 	shared_ptr<Texture> _texture1;
 
-	ComPtr<ID3D11SamplerState> _samplerState = nullptr;
-	ComPtr<ID3D11BlendState> _blendState = nullptr;
+	shared_ptr<SamplerState> _samplerState;
+	shared_ptr<BlendState> _blendState;
 private:
 	TransformData _transformData;
 	shared_ptr<ConstantBuffer<TransformData>> _constantBuffer;
