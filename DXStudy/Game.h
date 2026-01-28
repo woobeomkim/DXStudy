@@ -20,6 +20,7 @@ private:
 	shared_ptr<Pipeline> _pipeline;
 
 	shared_ptr<GameObject> _gameObject;
+	shared_ptr<GameObject> _camera;
 private:
 
 };

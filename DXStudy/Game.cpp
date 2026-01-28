@@ -2,6 +2,7 @@
 #include "Game.h"
 #include "Graphics.h"
 #include "GameObject.h"
+#include "Camera.h"
 
 Game::Game()
 {
@@ -20,6 +21,15 @@ void Game::Init(HWND hwnd)
 
 	//GameObject
 	_gameObject = make_shared<GameObject>(_graphics->GetDevice(), _graphics->GetDeviceContext());
+	{
+		_gameObject->GetOrAddTransform();
+	}
+
+	_camera = make_shared<GameObject>(_graphics->GetDevice(), _graphics->GetDeviceContext());
+	{
+		_camera->GetOrAddTransform();
+		_camera->AddComponent(make_shared<Camera>());
+	}
 }
 
 void Game::Update()
