@@ -1,6 +1,9 @@
 #pragma once
 
 class MonoBehaviour;
+class Transform;
+class Camera;
+class MeshRenderer;
 
 class GameObject : public enable_shared_from_this<GameObject>
 {
@@ -16,36 +19,15 @@ public:
 
 	shared_ptr<Component> GetFixedComponent(ComponentType type);
 	shared_ptr<Transform> GetTransform();
-	//shared_ptr<Camera> GetCamera();
+	shared_ptr<Camera> GetCamera();
+	shared_ptr<MeshRenderer> GetMeshRenderer();
 
 	shared_ptr<Transform> GetOrAddTransform();
 	void AddComponent(shared_ptr<Component> component);
 
-	void Render(shared_ptr<Pipeline> pipeline);
-
 private:
 	ComPtr<ID3D11Device> _device;
-	// Geometry
-	shared_ptr<Geometry<VertexTextureData>> _geometry;
-	shared_ptr<VertexBuffer> _vertexBuffer;
-	shared_ptr<IndexBuffer> _indexBuffer;
-	shared_ptr<InputLayout> _inputLayout;
-
-	// VS
-	shared_ptr<VertexShader> _vertexShader = nullptr;
-	//RAS
-	shared_ptr<RasterizerState> _rasterizerState;
-	// PS
-	shared_ptr<PixelShader> _pixelShader = nullptr;
-
-	// SharderResourceView
-	shared_ptr<Texture> _texture1;
-
-	shared_ptr<SamplerState> _samplerState;
-	shared_ptr<BlendState> _blendState;
-private:
-	TransformData _transformData;
-	shared_ptr<ConstantBuffer<TransformData>> _constantBuffer;
+	
 	
 protected:
 	std::array<shared_ptr<Component>, FIXED_COMPONENT_COUNT> _components;
