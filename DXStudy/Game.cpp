@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "Game.h"
 #include "Graphics.h"
+#include "GameObject.h"
 
 Game::Game()
 {
@@ -15,99 +16,25 @@ void Game::Init(HWND hwnd)
 	_hwnd = hwnd;
 	
 	_graphics = make_shared<Graphics>(hwnd);
-	_vertexBuffer = make_shared<VertexBuffer>(_graphics->GetDevice());
-	_indexBuffer = make_shared<IndexBuffer>(_graphics->GetDevice());
-	_inputLayout = make_shared<InputLayout>(_graphics->GetDevice());
-	_geometry = make_shared<Geometry<VertexTextureData>>();
-	_vertexShader = make_shared<VertexShader>(_graphics->GetDevice());
-	_pixelShader = make_shared<PixelShader>(_graphics->GetDevice());
-	_constantBuffer = make_shared<ConstantBuffer<TransformData>>(_graphics->GetDevice(), _graphics->GetDeviceContext());
-	_texture1 = make_shared<Texture>(_graphics->GetDevice());
-	_rasterizerState = make_shared<RasterizerState>(_graphics->GetDevice());
-	_samplerState = make_shared<SamplerState>(_graphics->GetDevice());
-	_blendState = make_shared<BlendState>(_graphics->GetDevice());
 	_pipeline = make_shared<Pipeline>(_graphics->GetDeviceContext());
 
-	CreateGeometry();
-	_vertexShader->Create(L"Default.hlsl", "VS", "vs_5_0");
-	_inputLayout->Create(VertexTextureData::descs, _vertexShader->GetBlob());
-	_pixelShader->Create(L"Default.hlsl", "PS", "ps_5_0");
-
-	_rasterizerState->Create();
-	_samplerState->Create();
-	_blendState->Create();
-
-	_texture1->Create(L"test.png");
-	_constantBuffer->Create();
+	//GameObject
+	_gameObject = make_shared<GameObject>(_graphics->GetDevice(), _graphics->GetDeviceContext());
 }
 
 void Game::Update()
 {
-
-	Matrix matScale = Matrix::CreateScale(_localScale / 3);
-	Matrix matRotation = Matrix::CreateRotationX(_localRotation.x);
-	matRotation *= Matrix::CreateRotationY(_localRotation.y);
-	matRotation *= Matrix::CreateRotationZ(_localRotation.z);
-	Matrix matTranslation = Matrix::CreateTranslation(_localPosition);
-
-	Matrix matWorld = matScale * matRotation * matTranslation;
-	_transformData.matWorld = matWorld;
-
-	_constantBuffer->CopyData(_transformData);
+	_gameObject->Update();
 }
 
 void Game::Render()
 {
 	_graphics->RenderBegin();
 
-	// TODO
-
 	// IA - VS - RS - PS - OM
 	{
-		PipelineInfo info;
-		info.inputLayout = _inputLayout;
-		info.vertexShader = _vertexShader;
-		info.pixelShader = _pixelShader;
-		info.rasterizerState = _rasterizerState;
-		info.blendState = _blendState;
-
-		_pipeline->UpdatePipeline(info);
-
-		uint32 stride = sizeof(VertexTextureData);
-		uint32 offset = 0;
-		
-		auto _deviceContext = _graphics->GetDeviceContext();
-		// IA
-		_pipeline->SetVertexBuffer(_vertexBuffer);
-		_pipeline->SetIndexBuffer(_indexBuffer);
-		_pipeline->SetConstantBuffer(0, SS_VertexShader, _constantBuffer);
-		_pipeline->SetTexture(0, SS_PixelShader, _texture1);
-		_pipeline->SetSamplerState(0, SS_PixelShader, _samplerState);
-		_pipeline->DrawIndexed(_geometry->GetIndexCount(), 0, 0);
-		// VS
-		// RS
-		// PS
-		// OM
-		//_deviceContext->Draw(_vertices.size(), 0);
+		_gameObject->Render(_pipeline);
 	}
 
 	_graphics->RenderEnd();
-}
-
-void Game::CreateGeometry()
-{
-	//VetexData
-	{
-		GeometryHelper::CreateRectangle(_geometry);
-	}
-
-	// VertexBuffer
-	{
-		_vertexBuffer->Create(_geometry->GetVertices());
-	}
-
-	// IndexBuffer
-	{
-		_indexBuffer->Create(_geometry->GetIndices());
-	}
 }
