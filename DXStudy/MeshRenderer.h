@@ -11,6 +11,7 @@ public:
 	void Render(shared_ptr<Pipeline> pipeline);
 private:
 	ComPtr<ID3D11Device> _device;
+	shared_ptr<Pipeline> _pipeline;
 	// Geometry
 	// Mesh
 	shared_ptr<Geometry<VertexTextureData>> _geometry;

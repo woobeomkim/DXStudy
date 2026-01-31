@@ -17,6 +17,7 @@ void Transform::Update()
 {
 }
 
+
 Vec3 ToEulerAngles(Quaternion q) 
 {
 	Vec3 angles;

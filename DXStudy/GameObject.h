@@ -1,5 +1,6 @@
 #pragma once
 
+class Component;
 class MonoBehaviour;
 class Transform;
 class Camera;
