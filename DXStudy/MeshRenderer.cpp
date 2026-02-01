@@ -25,23 +25,11 @@ MeshRenderer::MeshRenderer(ComPtr<ID3D11Device> device, ComPtr<ID3D11DeviceConte
 	_pixelShader = make_shared<PixelShader>(device);
 	_pixelShader->Create(L"Default.hlsl", "PS", "ps_5_0");
 
-	_rasterizerState = make_shared<RasterizerState>(device);
-	_rasterizerState->Create();
-
-	_blendState = make_shared<BlendState>(device);
-	_blendState->Create();
-
-	_transformBuffer = make_shared<ConstantBuffer<TransformData>>(device, deviceContext);
-	_transformBuffer->Create();
-
-	_camearaBuffer = make_shared<ConstantBuffer<CameraData>>(device, deviceContext);
-	_camearaBuffer->Create();
-
+	
 	_texture1 = make_shared<Texture>(device);
 	_texture1->Create(L"test.png");
 
-	_samplerState = make_shared<SamplerState>(device);
-	_samplerState->Create();
+
 }
 
 MeshRenderer::~MeshRenderer()
@@ -50,42 +38,6 @@ MeshRenderer::~MeshRenderer()
 
 void MeshRenderer::Update()
 {
-	_cameraData.matView = Camera::S_MatView;
-	_cameraData.matProjection = Camera::S_MatProjection;
-	_camearaBuffer->CopyData(_cameraData);
-
-	_transformData.matWorld = GetTransform()->GetWorldMatrix();
-	_transformBuffer->CopyData(_transformData);
-
-	// Render
-	Render(GGame->GetPipeline());
+	
 }
 
-void MeshRenderer::Render(shared_ptr<Pipeline> pipeline)
-{
-	// IA - VS - RS - PS - OM
-	{
-		PipelineInfo info;
-		info.inputLayout = _inputLayout;
-		info.vertexShader = _vertexShader;
-		info.pixelShader = _pixelShader;
-		info.rasterizerState = _rasterizerState;
-		info.blendState = _blendState;
-
-		pipeline->UpdatePipeline(info);
-
-		// IA
-		pipeline->SetVertexBuffer(_vertexBuffer);
-		pipeline->SetIndexBuffer(_indexBuffer);
-		pipeline->SetConstantBuffer(0, SS_VertexShader, _camearaBuffer);
-		pipeline->SetConstantBuffer(1, SS_VertexShader, _transformBuffer);
-		pipeline->SetTexture(0, SS_PixelShader, _texture1);
-		pipeline->SetSamplerState(0, SS_PixelShader, _samplerState);
-		pipeline->DrawIndexed(_geometry->GetIndexCount(), 0, 0);
-		// VS
-		// RS
-		// PS
-		// OM
-		//_deviceContext->Draw(_vertices.size(), 0);
-	}
-}

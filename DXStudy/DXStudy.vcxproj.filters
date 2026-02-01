@@ -81,6 +81,9 @@
     <Filter Include="소스 파일\00. Engine\Resource">
       <UniqueIdentifier>{b572803e-f07a-49b5-b2af-c5854c0b188d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\00. Engine\Manager\Render">
+      <UniqueIdentifier>{3218acc6-251c-4540-b21c-64c4d2932e64}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DXStudy.h">
@@ -203,6 +206,12 @@
     <ClInclude Include="Shader.h">
       <Filter>소스 파일\00. Engine\Resource</Filter>
     </ClInclude>
+    <ClInclude Include="RenderManager.h">
+      <Filter>소스 파일\00. Engine\Manager\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderHelper.h">
+      <Filter>소스 파일\00. Engine\Manager\Render</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="DXStudy.rc">
@@ -319,6 +328,12 @@
     </ClCompile>
     <ClCompile Include="Shader.cpp">
       <Filter>소스 파일\00. Engine\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderManager.cpp">
+      <Filter>소스 파일\00. Engine\Manager\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderHelper.cpp">
+      <Filter>소스 파일\00. Engine\Manager\Render</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

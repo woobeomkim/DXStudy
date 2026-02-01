@@ -9,14 +9,14 @@ ResourceManager::ResourceManager(ComPtr<ID3D11Device> device)
 
 void ResourceManager::Init()
 {
-
+	CreateDefaultTexture();
 }
 
 void ResourceManager::CreateDefaultTexture()
 {
 	auto texture = make_shared<Texture>(_device);
 	texture->SetName(L"Red");
-	texture->Create(L"Test.png");
+	texture->Create(L"sukju.jpg");
 	Add(texture->GetName(), texture);
 }
 
