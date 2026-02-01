@@ -6,5 +6,17 @@ class Shader : public ResourceBase
 public:
 	Shader();
 	virtual ~Shader();
+
+	shared_ptr<VertexShader> GetVertexShader() { return _vertexShader; }
+	shared_ptr<PixelShader> GetPixelShader() { return _pixelShader; }
+	shared_ptr<InputLayout> GetInputLayout() { return _inputLayout; }
+
+private:
+	friend class ResourceManager;
+
+	shared_ptr<VertexShader> _vertexShader;
+	shared_ptr<PixelShader> _pixelShader;
+	shared_ptr<InputLayout> _inputLayout;
+
 };
 
