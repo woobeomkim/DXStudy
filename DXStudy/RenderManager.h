@@ -12,6 +12,7 @@ public:
 private:
 	void PushCameraData();
 	void PushTransformData();
+	void PushAnimationData();
 
 	void GetherRanderableObjects();
 	void RenderObjects();
@@ -27,6 +28,10 @@ private:
 
 	CameraData _cameraData;
 	shared_ptr<ConstantBuffer<CameraData>> _camearaBuffer;
+
+	AnimationData _animationData;
+	shared_ptr<ConstantBuffer<AnimationData>> _animationBuffer;
+
 
 private:
 	// SharderResourceView

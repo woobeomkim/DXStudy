@@ -31,8 +31,8 @@ public:
 	uint32 GetID() { return _id; }
 
 protected:
-	virtual void Load(wstring& path) {}
-	virtual void Save(wstring& path) {}
+	virtual void Load(const wstring& path) {}
+	virtual void Save(const wstring& path) {}
 
 private:
 	ResourceType _type = ResourceType::None;

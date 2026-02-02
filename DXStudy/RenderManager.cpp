@@ -7,6 +7,7 @@
 #include "SceneManager.h"
 #include "Scene.h"
 #include "Mesh.h"
+#include "Animator.h"
 
 RenderManager::RenderManager(ComPtr<ID3D11Device> device, ComPtr<ID3D11DeviceContext> deviceContext)
 	:_device(device), _deviceContext(deviceContext)
@@ -23,6 +24,9 @@ void RenderManager::Init()
 	_camearaBuffer = make_shared<ConstantBuffer<CameraData>>(_device, _deviceContext);
 	_camearaBuffer->Create();
 	
+	_animationBuffer = make_shared<ConstantBuffer<AnimationData>>(_device, _deviceContext);
+	_animationBuffer->Create();
+
 	_rasterizerState = make_shared<RasterizerState>(_device);
 	_rasterizerState->Create();
 
@@ -59,6 +63,11 @@ void RenderManager::PushTransformData()
 
 }
 
+void RenderManager::PushAnimationData()
+{
+	_animationBuffer->CopyData(_animationData);
+}
+
 void RenderManager::GetherRanderableObjects()
 {
 	_renderObjects.clear();
@@ -87,6 +96,34 @@ void RenderManager::RenderObjects()
 		_transformData.matWorld = transform->GetWorldMatrix();
 		PushTransformData();
 
+		// Animation
+		shared_ptr<Animator> animator = gameObject->GetAnimator();
+		if (animator)
+		{
+			const Keyframe& keyframe = animator->GetCurrentKeyframe();
+			_animationData.spriteOffset = keyframe.offset;
+			_animationData.spriteSize = keyframe.size;
+			_animationData.textureSize = animator->GetCurrentAnimation()->GetTextureSize();
+			_animationData.useAnimation = 1.0f;
+			PushAnimationData();
+
+			_pipeline->SetConstantBuffer(2, SS_VertexShader, _animationBuffer);
+			_pipeline->SetTexture(0, SS_VertexShader, animator->GetCurrentAnimation()->GetTexture());
+		}
+		else
+		{
+			_animationData.spriteOffset = Vec2(0.f, 0.f);
+			_animationData.spriteSize = Vec2(0.f,0.f);
+			_animationData.textureSize = Vec2(0.f,0.f);
+			_animationData.useAnimation = 0.0f;
+
+			PushAnimationData();
+
+			_pipeline->SetConstantBuffer(2, SS_VertexShader, _animationBuffer);
+			_pipeline->SetTexture(0, SS_VertexShader, meshRenderer->GetTexture());
+
+		}
+
 		// IA - VS - RS - PS - OM
 		{
 			PipelineInfo info;
@@ -103,7 +140,7 @@ void RenderManager::RenderObjects()
 			_pipeline->SetIndexBuffer(meshRenderer->GetMesh()->GetIndexBuffer());
 			_pipeline->SetConstantBuffer(0, SS_VertexShader, _camearaBuffer);
 			_pipeline->SetConstantBuffer(1, SS_VertexShader, _transformBuffer);
-			_pipeline->SetTexture(0, SS_PixelShader, meshRenderer->GetTexture());
+			//_pipeline->SetTexture(0, SS_PixelShader, meshRenderer->GetTexture());
 			_pipeline->SetSamplerState(0, SS_PixelShader, _samplerState);
 			_pipeline->DrawIndexed(meshRenderer->GetMesh()->GetIndexBuffer()->GetCount(), 0, 0);
 			// VS

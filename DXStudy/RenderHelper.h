@@ -11,7 +11,11 @@ struct CameraData
 	Matrix matProjection = Matrix::Identity;
 };
 
-class RenderHelper
+struct AnimationData
 {
+	Vec2 spriteOffset;
+	Vec2 spriteSize;
+	Vec2 textureSize;
+	float useAnimation;
+	float padding;
 };
-
