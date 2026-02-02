@@ -15,6 +15,10 @@
 #include <unordered_map>
 using namespace std;
 
+// Utils
+#include "tinyxml2.h"
+using namespace tinyxml2;
+
 //WIN
 #include <Windows.h>
 #include <assert.h>
