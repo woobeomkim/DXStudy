@@ -21,10 +21,10 @@ void Camera::Update()
 void Camera::UpdateMatrix()
 {
 	// ¹æ¹ý1
-	Vec3 eyePosition = GetTransform()->GetPosition();
+	/*Vec3 eyePosition = GetTransform()->GetPosition();
 	Vec3 focusPosition = eyePosition + GetTransform()->GetLook();
 	Vec3 upDirection = GetTransform()->GetUp();
-	S_MatView = XMMatrixLookAtLH(eyePosition, focusPosition, upDirection);
+	S_MatView = XMMatrixLookAtLH(eyePosition, focusPosition, upDirection);*/
 
 	int a1 = 0;
 

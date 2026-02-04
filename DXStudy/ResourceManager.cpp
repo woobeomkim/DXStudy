@@ -24,8 +24,8 @@ void ResourceManager::CreateDefaultTexture()
 {
 	{
 		auto texture = make_shared<Texture>(_device);
-		texture->SetName(L"sukju");
-		texture->Create(L"sukju.jpg");
+		texture->SetName(L"seokju");
+		texture->Create(L"seokju.jpg");
 		Add(texture->GetName(), texture);
 	}
 	{

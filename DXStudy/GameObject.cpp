@@ -46,14 +46,6 @@ void GameObject::Start()
 
 void GameObject::Update()
 {
-	//Vec3 pos = _transform->GetPosition();
-	//pos.x += 0.001f;
-	//_transform->SetPosition(pos);
-
-	//Vec3 rot = _transform->GetRotation();
-	//rot.z += 0.1f;
-	//_transform->SetRotation(rot);
-
 	for (shared_ptr<Component>& component : _components)
 	{
 		if (component)
@@ -64,9 +56,6 @@ void GameObject::Update()
 	{
 		script->Update();
 	}
-
-	
-
 }
 
 void GameObject::LateUpdate()
