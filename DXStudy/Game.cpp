@@ -42,11 +42,9 @@ void Game::Init(HWND hwnd)
 
 void Game::Update()
 {
-	_graphics->RenderBegin();
 	TIME->Update();
 	INPUT->Update();
 	SCENE->Update();
-	_graphics->RenderEnd();
 }
 
 void Game::Render()

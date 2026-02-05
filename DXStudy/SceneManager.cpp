@@ -50,7 +50,8 @@ shared_ptr<Scene> SceneManager::LoadTestScene()
 	}
 	shared_ptr<GameObject> _monster = make_shared<GameObject>(_graphics->GetDevice(), _graphics->GetDeviceContext());
 	{
-		_monster->GetOrAddTransform();
+		auto transform = _monster->GetOrAddTransform();
+		transform->SetScale(Vec3(1.f,1.f,1.f));
 		auto meshRenderer = make_shared<MeshRenderer>(_graphics->GetDevice(), _graphics->GetDeviceContext());
 		_monster->AddComponent(meshRenderer);
 		

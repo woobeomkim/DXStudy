@@ -26,12 +26,8 @@ void Camera::UpdateMatrix()
 	Vec3 upDirection = GetTransform()->GetUp();
 	S_MatView = XMMatrixLookAtLH(eyePosition, focusPosition, upDirection);*/
 
-	int a1 = 0;
-
 	// ¹æ¹ý2
 	S_MatView = GetTransform()->GetWorldMatrix().Invert();
-
-	int a2 = 0;
 
 	if (_type == ProjectionType::Perspective)
 	{
@@ -39,6 +35,6 @@ void Camera::UpdateMatrix()
 	}
 	else
 	{
-		S_MatProjection = XMMatrixOrthographicLH(800, 600, 0.f, 1.f);
+		S_MatProjection = XMMatrixOrthographicLH(8, 6, 0.f, 1.f);
 	}
 }

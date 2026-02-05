@@ -4,7 +4,8 @@
 
 void CameraMove::Update()
 {
-	auto pos = GetTransform()->GetPosition();
-	pos.x += 0.1f;
+	auto pos = GetTransform()->GetLocalPosition();
+	pos.x += 0.01f;
 	GetTransform()->SetPosition(pos);
+
 }

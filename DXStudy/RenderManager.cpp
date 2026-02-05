@@ -147,7 +147,8 @@ void RenderManager::RenderObjects()
 			// RS
 			// PS
 			// OM
-			//_deviceContext->Draw(_vertices.size(), 0);
+			//
+			// _deviceContext->Draw(_vertices.size(), 0);
 		}
 	}
 }

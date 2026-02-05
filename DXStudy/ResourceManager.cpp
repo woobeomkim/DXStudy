@@ -69,7 +69,7 @@ void ResourceManager::CreateDefaultMaterial()
 	shared_ptr<Material> material = make_shared<Material>();
 	material->SetName(L"Default");
 	material->SetShader(Get<Shader>(L"Default"));
-	material->SetTexture(Get<Texture>(L"sukju"));
+	material->SetTexture(Get<Texture>(L"Snake"));
 	Add(material->GetName(), material);
 }
 
